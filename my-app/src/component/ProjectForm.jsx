@@ -1,39 +1,47 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProject } from "../store/projectsSlice"; 
-import { TextField, Button, Box, Typography, Paper, Divider } from "@mui/material";
+import { useNavigate } from "react-router-dom"; 
+import { addProject } from "../store/projectsSlice";
+import { Button, TextField, Container, Typography, Box } from "@mui/material";
 
 const ProjectForm = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
 
-  const onSubmit = (data) => {
-    dispatch(addProject({
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleAddProject = () => {
+    if (!name.trim()) {
+      alert("חובה להזין שם פרויקט");
+      return;
+    }
+
+    const newProject = {
       id: Date.now(),
-      name: data.name,
-      description: data.description,
-      createdDate: data.createdDate || new Date().toISOString().split('T')[0],
+      name: name,
+      description: description,
+      createdAt: createdAt,
       tasks: [] 
-    }));
-    reset();
+    };
+
+    dispatch(addProject(newProject));
+    navigate("/ProjectsList"); 
   };
 
   return (
-    <Box sx={{ maxWidth: "800px", margin: "0 auto", p: 2 }}>
-      {/*  הוספת פרויקט */}
-      <Paper elevation={3} sx={{ padding: "20px", marginBottom: "20px" }}>
-        <Typography variant="h6" gutterBottom>הוספת פרויקט חדש</Typography>
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <TextField label="שם הפרויקט" {...register("name", { required: "חובה" })} error={!!errors.name} />
-          <TextField label="תיאור" multiline rows={3} {...register("description")} />
-          <TextField label="תאריך יצירה" type="date" InputLabelProps={{ shrink: true }} {...register("createdDate")} />
-          <Button type="submit" variant="contained">שמור פרויקט</Button>
-        </Box>
-      </Paper>
-
-     
-    </Box>
+    <Container maxWidth="sm" sx={{ mt: 4, textAlign: 'center' }}>
+      <Typography variant="h4" gutterBottom>הוספת פרויקט חדש</Typography>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, border: '1px solid #ccc', padding: 3, borderRadius: 2 }}>
+        <TextField label="שם הפרויקט" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
+        <TextField label="תיאור" variant="outlined" multiline rows={3} value={description} onChange={(e) => setDescription(e.target.value)} fullWidth />
+        <TextField label="תאריך יצירה" type="date" InputLabelProps={{ shrink: true }} value={createdAt} onChange={(e) => setCreatedAt(e.target.value)} fullWidth />
+        <Button variant="contained" color="primary" onClick={handleAddProject}>
+          שמור פרויקט
+        </Button>
+      </Box>
+    </Container>
   );
 };
 

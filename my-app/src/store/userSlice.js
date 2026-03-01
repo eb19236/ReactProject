@@ -9,7 +9,7 @@ const userSlice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      state.userName = action.payload.userName;
+      state.userName = acion.payload.userName;
       state.email = action.payload.email;
       state.isLoggedIn = true;
     },

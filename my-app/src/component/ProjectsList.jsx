@@ -1,9 +1,22 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { deleteProject, updateProject } from "../store/projectsSlice"; 
 import { Button, Card, CardContent, Typography, Box, Container } from "@mui/material";
 import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
+=======
+import { deleteProject } from "../store/projectsSlice";
+import {
+  Button,
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  Container,
+} from "@mui/material";
+import { Delete as DeleteIcon } from "@mui/icons-material";
+>>>>>>> 62207b6c37a1e41cc689daf68ce1d552f971fd5f
 
 const ProjectsList = () => {
   const projects = useSelector((state) => state.projects.projects);
@@ -26,18 +39,51 @@ const ProjectsList = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 4,
+        }}
+      >
         <Typography variant="h4">הפרויקטים שלי</Typography>
+<<<<<<< HEAD
         <Button variant="contained" color="primary" onClick={() => navigate("/AddProject")}>
+=======
+
+        {/* כפתור שעובר לעמוד ההוספה  */}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate("/AddProject")}
+        >
+>>>>>>> 62207b6c37a1e41cc689daf68ce1d552f971fd5f
           + פרויקט חדש
         </Button>
       </Box>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         {projects.map((project) => (
+<<<<<<< HEAD
           <Card key={project.id} sx={{ cursor: 'pointer' }} onClick={() => navigate(`/DetailsProject/${project.id}`)}>
             <CardContent sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 2 }}>
               <Box sx={{ flex: 1, textAlign: 'right' }}>
+=======
+          <Card
+            key={project.id}
+            sx={{ cursor: "pointer" }}
+            onClick={() => navigate(`/DetailsProject/${project.id}`)}
+          >
+            <CardContent
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Box>
+>>>>>>> 62207b6c37a1e41cc689daf68ce1d552f971fd5f
                 <Typography variant="h6">{project.name}</Typography>
                 <Typography variant="body2" color="text.secondary">{project.description}</Typography>
               </Box>
@@ -49,6 +95,22 @@ const ProjectsList = () => {
                   מחק
                 </Button>
               </Box>
+<<<<<<< HEAD
+=======
+
+              {/* כפתור מחיקה */}
+              <Button
+                variant="outlined"
+                color="error"
+                startIcon={<DeleteIcon />}
+                onClick={(e) => {
+                  // מונע מעבר לעמוד פרויקט כשלוחצים על מחיקה
+                  dispatch(deleteProject(project.id));
+                }}
+              >
+                מחק
+              </Button>
+>>>>>>> 62207b6c37a1e41cc689daf68ce1d552f971fd5f
             </CardContent>
           </Card>
         ))}

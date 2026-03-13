@@ -11,7 +11,6 @@ function App() {
   return (
     <BrowserRouter>
       {" "}
-      {/* חייב לעטוף את ה-Routes */}
       <div className="App">
         {/* כותרת כללית שתוצג בכל העמודים */}
         <h1>מערכת ניהול פרויקטים</h1>

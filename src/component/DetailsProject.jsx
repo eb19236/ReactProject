@@ -181,7 +181,6 @@ const DetailsProject = () => {
                                         
                                         <small style={{ fontSize: '0.7em', color: '#999' }}>עריכה 📝</small>
                                         
-                                        {/* חץ שמאלה -> מקדם קדימה */}
                                         <button 
                                             onClick={(e) => { e.stopPropagation(); moveTask(task.taskId, 1); }} 
                                             disabled={status === 'Done'}

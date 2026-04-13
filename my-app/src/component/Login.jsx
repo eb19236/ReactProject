@@ -33,7 +33,7 @@ const Login = () => {
         </Typography>
 
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
-          {/* שדה שם משתמש עם MUI ו-react-hook-form  */}
+          {/*שדה שם משתמש*/}
           <TextField
             margin="normal"
             fullWidth
@@ -43,7 +43,7 @@ const Login = () => {
             helperText={errors.userName?.message}
           />
 
-          {/* שדה אימייל עם ולידציה  */}
+          {/*שדה אימייל ה*/}
           <TextField
             margin="normal"
             fullWidth
